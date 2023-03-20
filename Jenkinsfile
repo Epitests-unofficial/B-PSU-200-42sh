@@ -44,9 +44,7 @@ pipeline {
                 sh "make -C /tmp/tests"
                 sh "if ! test -f /tmp/tests/tester.sh; then echo 'No Bash test file'; exit 0; fi"
                 sh "mv $BINARY_NAME /tmp/tests/$BINARY_NAME"
-                sh "cd /tmp/tests"
-                sh "chmod +x tester.sh"
-                sh "./tester.sh"
+                sh "cd /tmp/tests; chmod +x tester.sh; ./tester.sh"
             }
         }
     }
@@ -55,8 +53,7 @@ pipeline {
         always {
             emailext subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
             body: '${SCRIPT, template="groovy-html.template"}',
-            recipientProviders: [[$class: 'DevelopersRecipientProvider'],
-            [$class: 'RequesterRecipientProvider']],
+            recipientProviders: [buildUser(), contributor(), developers(), requestor()],
             attachLog: true,
             from: 'autotest@mail.jenkins.nicojqn.fr'
         }
