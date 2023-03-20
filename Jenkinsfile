@@ -42,7 +42,11 @@ pipeline {
             steps {
                 sh "git clone $TEST_REPO /tmp/tests"
                 sh "make -C /tmp/tests"
-                sh "if test -f /tmp/tests/tester.sh; then mv $BINARY_NAME /tmp/tests/$BINARY_NAME; cd /tmp/tests; ./tester.sh; else echo 'No Bash test file'; fi"
+                sh "if ! test -f /tmp/tests/tester.sh; then echo 'No Bash test file'; exit 0; fi"
+                sh "mv $BINARY_NAME /tmp/tests/$BINARY_NAME"
+                sh "cd /tmp/tests"
+                sh "chmod +x tester.sh"
+                sh "./tester.sh"
             }
         }
     }
