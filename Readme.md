@@ -9,7 +9,7 @@ These tests are written in bash thanks to the epitech original tester.tgz
 
 * Clone this repo
 * `make`
-* Copy your `mysh` binary at the root of the repo
+* Copy your `42sh` binary at the root of the repo
 * run `./tester.sh`
 
 #### Jenkins Pipeline
