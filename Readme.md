@@ -1,6 +1,6 @@
-# B-PSU-200-Minishell1 - Unit Tests
+# B-PSU-200-42sh - Unit Tests
 
-Any tests for minishell 1 Epitech Project
+Any tests for 42sh Epitech Project
 
 These tests are written in bash thanks to the epitech original tester.tgz
 

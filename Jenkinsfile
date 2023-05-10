@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        PROJECT_NAME = "Minishell1"
-        BINARY_NAME = "mysh"
-        TEST_REPO = "https://github.com/Epitests-unofficial/B-PSU-200-Minishell1.git"
+        PROJECT_NAME = "42sh"
+        BINARY_NAME = "42sh"
+        TEST_REPO = "https://github.com/Epitests-unofficial/B-PSU-200-42sh.git"
     }
     stages {
         stage ("Code Style (marvin only)") {
@@ -50,7 +50,7 @@ pipeline {
     }
 
     post {
-        always {
+        failure {
             emailext subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
             body: '${SCRIPT, template="groovy-html.template"}',
             recipientProviders: [buildUser(), contributor(), developers(), requestor()],
