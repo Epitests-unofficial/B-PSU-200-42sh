@@ -17,6 +17,8 @@ EXPR=`which expr`
 MKDIR=`which mkdir`
 CP=`which cp`
 
+result=0
+
 for i in `env | grep BASH_FUNC_ | cut -d= -f1`; do
     f=`echo $i | sed s/BASH_FUNC_//g | sed s/%%//g`
     unset -f $f
@@ -43,11 +45,11 @@ prepare_test()
   local refoutfn="/tmp/.refer.$$"
   local shoutfn="/tmp/.shell.$$"
 
-  WRAPPER="$runnerfn"
+  WRAPPER="timeout 10s $runnerfn"
 
   echo "#!/bin/bash" > $runnerfn
   echo "$SETUP" >> $runnerfn
-  echo "/bin/bash -c '"$testfn" | "$BIN" ; echo Shell exit with code \$?' > "$shoutfn" 2>&1" >> $runnerfn
+  echo "/bin/bash -c ' "$testfn" | "$BIN" ; echo Shell exit with code \$?' > "$shoutfn" 2>&1" >> $runnerfn
   echo "$CLEAN" >> $runnerfn
   echo "$SETUP" >> $runnerfn
   echo "$TCSHUPDATE" >> $runnerfn
@@ -116,7 +118,7 @@ load_test()
       echo "Output $REFER :"
       $CAT -e /tmp/.refer.$$
       echo ""
-      exit 1
+      result=1
     else
       echo "KO"
     fi
@@ -176,3 +178,5 @@ else
     fi
   fi
 fi
+
+exit $result
