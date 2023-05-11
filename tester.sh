@@ -45,7 +45,7 @@ prepare_test()
   local refoutfn="/tmp/.refer.$$"
   local shoutfn="/tmp/.shell.$$"
 
-  WRAPPER="$runnerfn"
+  WRAPPER="timeout 10s $runnerfn"
 
   echo "#!/bin/bash" > $runnerfn
   echo "$SETUP" >> $runnerfn
