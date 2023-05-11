@@ -247,3 +247,37 @@ CLEAN=""
 TESTS=
   echo 'cd ; </etc/hosts od -c | grep xx | wc >> /tmp/z -l ; cd - && echo "OK"'
 [2005-END]
+
+[2006]
+NAME="Pipe (subject example) (Single quote)"
+SETUP="export TERM=xterm;"
+CLEAN=""
+TESTS=
+  echo "cd ; </etc/hosts od -c | grep xx | wc >> /tmp/z -l ; cd - && echo 'OK'"
+[2006-END]
+
+[2006]
+NAME="Pipe (subject example) (Single quote)"
+SETUP="export TERM=xterm;"
+CLEAN=""
+TESTS=
+  echo "cd ; </etc/hosts od -c | grep xx | wc >> /tmp/z -l ; cd - && echo 'OK'"
+[2006-END]
+
+[2007]
+NAME="Quote"
+SETUP="export TERM=xterm;"
+CLEAN=""
+TESTS=
+  echo "echo 'coucou'"
+  echo 'echo "coucou ca va"'
+[2007-END]
+
+[2007]
+NAME="Unmatched Quote"
+SETUP="export TERM=xterm;"
+CLEAN=""
+TESTS=
+  echo "echo 'coucou'"
+  echo 'echo "coucou ca va" non "'
+[2007-END]
