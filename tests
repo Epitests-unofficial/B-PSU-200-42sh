@@ -202,6 +202,9 @@ TESTS=
   echo 'setenv var2 val2'
   echo 'setenv tata titi=toto'
   echo 'unsetenv tata=titi'
+  echo 'setenv test1 test'
+  echo 'setenv test2 test'
+  echo 'unsetenv test1 test2'
   echo 'env'
 [206-END]
 
