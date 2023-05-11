@@ -273,11 +273,12 @@ TESTS=
   echo 'echo "coucou ca va"'
 [2007-END]
 
-[2007]
+[2008]
 NAME="Unmatched Quote"
 SETUP="export TERM=xterm;"
 CLEAN=""
 TESTS=
   echo "echo 'coucou'"
   echo 'echo "coucou ca va" non "'
-[2007-END]
+  echo '"""'
+[2008-END]
