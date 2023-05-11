@@ -204,3 +204,14 @@ TESTS=
   echo 'unsetenv tata=titi'
   echo 'env'
 [206-END]
+
+[2001]
+NAME="History 1"
+SETUP="export TERM=xterm"
+CLEAN=""
+TESTS=
+  echo "history -c"
+  echo "ls"
+  echo "pwd"
+  echo "history"
+[2001-END]

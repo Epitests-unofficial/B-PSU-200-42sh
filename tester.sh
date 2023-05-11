@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BIN="$PWD/42sh"
-REFER="/bin/tcsh -f"
+REFER="/bin/tcsh"
 TRAPSIG=0
 
 CAT=`which cat`
@@ -45,7 +45,7 @@ prepare_test()
   local refoutfn="/tmp/.refer.$$"
   local shoutfn="/tmp/.shell.$$"
 
-  WRAPPER="timeout 10s $runnerfn"
+  WRAPPER="$runnerfn"
 
   echo "#!/bin/bash" > $runnerfn
   echo "$SETUP" >> $runnerfn
@@ -55,7 +55,6 @@ prepare_test()
   echo "$TCSHUPDATE" >> $runnerfn
   echo "/bin/bash -c '"$testfn" | "$REFER" ; echo Shell exit with code \$?' > "$refoutfn" 2>&1" >> $runnerfn
   echo "$CLEAN" >> $runnerfn
-
   echo "#!/bin/bash" > $testfn
   echo "$TESTS" | $TR "²" "\n" >> $testfn
 
