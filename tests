@@ -202,9 +202,6 @@ TESTS=
   echo 'setenv var2 val2'
   echo 'setenv tata titi=toto'
   echo 'unsetenv tata=titi'
-  echo 'setenv test1 test'
-  echo 'setenv test2 test'
-  echo 'unsetenv test1 test2'
   echo 'env'
 [206-END]
 
@@ -218,3 +215,27 @@ TESTS=
   echo "pwd"
   echo "history"
 [2001-END]
+
+[2002]
+NAME="Globbings 1"
+SETUP="export TERM=xterm;"
+CLEAN=""
+TESTS=
+  echo "ls *"
+[2002-END]
+
+[2003]
+NAME="pipe random with head (ignore exit code)"
+SETUP="export TERM=xterm;"
+CLEAN=""
+TESTS=
+  echo "cat /dev/random | head | wc -l; exit 0"
+[2003-END]
+
+[2004]
+NAME="pipe random with head (should sigpipe)"
+SETUP="export TERM=xterm;"
+CLEAN=""
+TESTS=
+  echo "cat /dev/random | head | wc -l"
+[2004-END]
