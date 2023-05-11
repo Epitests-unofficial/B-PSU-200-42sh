@@ -282,3 +282,11 @@ TESTS=
   echo 'echo "coucou ca va" non "'
   echo '"""'
 [2008-END]
+
+[2009]
+NAME="Globbing ~"
+SETUP="export TERM=xterm;"
+CLEAN=""
+TESTS=
+    echo "echo ~"
+[2009-END]
