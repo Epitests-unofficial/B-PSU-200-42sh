@@ -152,7 +152,7 @@ NAME="Multiple commands with exit (weird stuff)"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
-  echo ";;;;;ls /home; exit 45; echo coucou;;;;"
+  echo ";;;;;ls /home  ; exit  45; echo coucou;;;;  "
   echo ";"
 [203-END]
 
